@@ -92,6 +92,32 @@ main {
   margin-left: 2px;
 }
 
+.weather-forecast {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.weather-forecast-day {
+  text-align: center;
+  color: #8FA48B;
+  font-size: 16px;
+}
+
+.weather-forecast-icon {
+  text-align: center;
+  font-size: 16px;
+}
+
+.weather-forecast-temps {
+  text-align: center;
+  color: #BC6C26;
+  font-size: 16px;
+  display: flex;
+  justify-content: center;
+}
+
 footer {
   border-top: 1px solid #D8E5D7;
   padding: 25px 0 0 0;
