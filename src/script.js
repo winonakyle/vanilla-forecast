@@ -17,6 +17,8 @@ function refreshWeather(response) {
   currentTempElement.innerHTML = Math.round(temperature);
   iconElement.innerHTML = `<img src="${response.data.condition.icon_url}"
   class="current-weather-temp-icon"/>`;
+
+  getForecast(response.data.city);
 }
 
 function formatDate(date) {
@@ -48,12 +50,19 @@ function submitSearchForm(event) {
 let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", submitSearchForm);
 
-searchCity("Iron River");
+function getForecast(city) {
+  let apiKey = "8e3acea414f74ff0de5f0fboa8fbt362";
+  let apiURL = `https://api.shecodes.io/weather/v1/forecast?query=${city}&key=${apiKey}&units=imperial`;
+  axios.get(apiURL).then(displayForecast);
+}
 
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data);
+  
 let forecastElement = document.querySelector("#forecast");
 let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 let forecastHtml = "";
+
 days.forEach(function (day){
   forecastHtml = forecastHtml +
     `
@@ -67,7 +76,8 @@ days.forEach(function (day){
     </div>
     `;
 });
+
 forecastElement.innerHTML = forecastHtml;
 }
 
-  displayForecast();
+searchCity("Iron River");
