@@ -93,6 +93,8 @@ main {
 }
 
 .weather-forecast {
+  margin-top: 20px;
+  margin-bottom: 10px;
   display: flex;
   justify-content: space-around;
 }
@@ -114,6 +116,10 @@ main {
   font-size: 16px;
   display: flex;
   justify-content: center;
+}
+
+.weather-forecast-temp {
+  padding: 2px;
 }
 
 footer {

@@ -49,3 +49,25 @@ let searchFormElement = document.querySelector("#search-form");
 searchFormElement.addEventListener("submit", submitSearchForm);
 
 searchCity("Iron River");
+
+function displayForecast() {
+let forecastElement = document.querySelector("#forecast");
+let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+let forecastHtml = "";
+days.forEach(function (day){
+  forecastHtml = forecastHtml +
+    `
+    <div class="weather-forecast-day-wrap">
+    <div class="weather-forecast-day">${day}</div>
+    <div class="weather-forecast-icon">❄️</div>
+    <div class="weather-forecast-temps">
+      <div class="weather-forecast-temp"><strong>23º</strong></div>
+      <div class="weather-forecast-temp"> 10º</div>
+    </div>
+    </div>
+    `;
+});
+forecastElement.innerHTML = forecastHtml;
+}
+
+  displayForecast();
