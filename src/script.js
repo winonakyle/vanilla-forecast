@@ -56,27 +56,35 @@ function getForecast(city) {
   axios.get(apiURL).then(displayForecast);
 }
 
-function displayForecast(response) {
-  console.log(response.data);
-  
-let forecastElement = document.querySelector("#forecast");
-let days = ["Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+function formatDay(timestamp) {
+  let date = new Date(timestamp * 1000);
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+  return days[date.getDay()];
+}
+
+function displayForecast(response) {  
 let forecastHtml = "";
 
-days.forEach(function (day){
+response.data.daily.forEach(function (day, index){
+  if (index < 6) {
   forecastHtml = forecastHtml +
     `
     <div class="weather-forecast-day-wrap">
-    <div class="weather-forecast-day">${day}</div>
-    <div class="weather-forecast-icon">❄️</div>
+    <div class="weather-forecast-day">${formatDay(day.time)}</div>
+    <div>
+    <img src="${day.condition.icon_url}" class="weather-forecast-icon"/>
+    </div>
     <div class="weather-forecast-temps">
-      <div class="weather-forecast-temp"><strong>23º</strong></div>
-      <div class="weather-forecast-temp"> 10º</div>
+      <div class="weather-forecast-temp"><strong>${Math.round(day.temperature.maximum)}º</strong></div>
+      <div class="weather-forecast-temp"> ${Math.round(day.temperature.minimum)}º</div>
     </div>
     </div>
     `;
+  }
 });
 
+let forecastElement = document.querySelector("#forecast");
 forecastElement.innerHTML = forecastHtml;
 }
 
